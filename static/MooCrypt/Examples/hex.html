@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<title>sixtyseconds string cryptography: hex</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+		<h1>sixtyseconds string cryptography: hex</h1>
+		<div id="from">Testing: Chris the Developer</div>
+		<div id="toHex"></div>
+		<div id="fromHex"></div>
+		<script type="text/javascript" src="moo-core-1.4.5.js"></script>
+		<script type="text/javascript" src="../Source/String.Hex.js"></script>
+		<script type="text/javascript">
+			window.addEvent('domready', function() {
+				var result = 'Chris the Developer'.toHex();
+
+				document.id('toHex').set('text', 'toHex:' + result);
+				document.id('fromHex').set('text', 'fromHex:' + result.fromHex());
+			});
+		</script>
+	</body>
+</html>

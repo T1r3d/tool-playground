@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<title>sixtyseconds string cryptography: sha1</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+		<h1>sixtyseconds string cryptography: sha1</h1>
+		<div id="from">Testing: Chris the Developer</div>
+		<div id="to"></div>
+		<div id="compare">Should be: 84e6af7fadbd9c322ac56902440bb5181ad13bbd</div>
+		<script type="text/javascript" src="moo-core-1.4.5.js"></script>
+		<script type="text/javascript" src="../Source/String.UTF-8.js"></script>
+		<script type="text/javascript" src="../Source/String.SHA-1.js"></script>
+		<script type="text/javascript">
+			window.addEvent('domready', function() {
+				document.id('to').set('text', 'Output: ' + 'Chris the Developer'.toSHA1());
+			});
+		</script>
+	</body>
+</html>

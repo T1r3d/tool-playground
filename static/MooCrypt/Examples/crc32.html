@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<title>sixtyseconds string cryptography: crc32</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+		<h1>sixtyseconds string cryptography: crc32</h1>
+		<div id="from">Testing: Chris the Developer</div>
+		<div id="to"></div>
+		<div id="compare">Should be: 1911945355</div>
+		<script type="text/javascript" src="moo-core-1.4.5.js"></script>
+		<script type="text/javascript" src="../Source/String.UTF-8.js"></script>
+		<script type="text/javascript" src="../Source/String.CRC-32.js"></script>
+		<script type="text/javascript">
+			window.addEvent('domready', function() {
+				document.id('to').set('text', 'Output: ' + 'Chris the Developer'.toCRC32());
+			});
+		</script>
+	</body>
+</html>
