@@ -1,40 +1,42 @@
 <template>
-<div class="config">
-    <el-button @click="showDialog = true">设置</el-button>
-    <el-dialog title="全局配置" v-model="showDialog">
-        <el-form>
-            <el-form-item label="HEX编码增加0x">
-                <el-switch on-text="" off-text="" :value="$store.state.hexAdd0x" @change="cycle0x"></el-switch>
-            </el-form-item>
-            <el-form-item label="输出结果变形">
-                <el-select @change="changeShape" v-model="$store.state.shape" placeholder="请选择">
-                    <el-option
-                            v-for="item in shapeOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="showDialog = false">确 定</el-button>
-        </div>
-    </el-dialog>
-</div>
+<el-dialog title="全局配置" v-model="showDialog">
+    <el-form>
+        <el-form-item label="HEX编码增加0x">
+            <el-switch on-text="" off-text="" :value="$store.state.hexAdd0x" @change="cycle0x"></el-switch>
+        </el-form-item>
+        <el-form-item label="输出结果变形">
+            <el-select @change="changeShape" v-model="$store.state.shape" multiple placeholder="请选择" class="select">
+                <el-option
+                        v-for="item in shapeOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+        </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="showDialog = false">确 定</el-button>
+    </div>
+</el-dialog>
 </template>
 
 <script>
 export default {
     name: 'index',
+    props: ['value'],
+    watch: {
+        value(val) {
+            this.showDialog = val
+        },
+        showDialog (val) {
+            this.$emit('input', val)
+        }
+    },
     data () {
         return {
             showDialog: false,
             shapeOptions: [
-                {
-                    value: "default",
-                    label: "保持默认"
-                },
                 {
                     value: "lower",
                     label: "转换成小写"
@@ -42,6 +44,10 @@ export default {
                 {
                     value: "upper",
                     label: "转换成大写"
+                },
+                {
+                    value: "urlencode",
+                    label: "URL编码"
                 }
             ]
         }
@@ -59,7 +65,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.config {
-    margin-bottom: 20px;
+.select {
+    width: 70%;
 }
 </style>

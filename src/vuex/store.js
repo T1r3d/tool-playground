@@ -7,7 +7,7 @@ export default new Vuex.Store({
     strict: false,
     state: {
         hexAdd0x: false,
-        shape: 'default'
+        shape: []
     },
     mutations: {
         cycle0x: state => state.hexAdd0x = !state.hexAdd0x,
