@@ -5,7 +5,7 @@
             <el-switch on-text="" off-text="" :value="$store.state.hexAdd0x" @change="cycle0x"></el-switch>
         </el-form-item>
         <el-form-item label="输出结果变形">
-            <el-select @change="changeShape" v-model="$store.state.shape" multiple placeholder="请选择" class="select">
+            <el-select @change="changeShape" :value="$store.state.shape" @input="changeShape($event.target.value)" multiple placeholder="请选择" class="select">
                 <el-option
                         v-for="item in shapeOptions"
                         :key="item.value"
@@ -35,6 +35,9 @@ export default {
     },
     data () {
         return {
+            form: {
+                name: ""
+            },
             showDialog: false,
             shapeOptions: [
                 {
@@ -58,7 +61,7 @@ export default {
         },
         changeShape (value) {
             this.$store.commit("changeShape", value)
-        }
+        },
     }
 }
 </script>

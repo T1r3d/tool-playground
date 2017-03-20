@@ -4,7 +4,7 @@
         <el-col :span="18">
             <el-form ref="form">
                 <el-form-item>
-                    <el-input type="textarea" v-model="text.input" :rows="10" resize="none" @change="convert"></el-input>
+                    <el-input type="textarea" v-model="text.input" id="text-in" :rows="10" resize="none" @change="convert"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button-group>
@@ -42,7 +42,8 @@
                         <el-button type="primary" size="small" @click="unicodedecode">Unicode解码</el-button>
                     </el-button-group>
                     <el-button type="primary" size="small" @click="stringcharcode">String Char Code</el-button>
-                    <el-button type="primary" size="small" @click="jsonformat">JSON格式化</el-button>
+                    <el-button type="success" size="small" @click="execute">直接执行</el-button>
+                    <el-button type="success" size="small" v-clipboard:copy="copyData()">复制</el-button>
                 </el-form-item>
                 <el-form-item>
                     <el-input type="textarea" v-model="text.output" :rows="10" resize="none" readonly></el-input>
@@ -58,7 +59,6 @@ import base64 from "crypto-js/enc-base64"
 import utf8 from "crypto-js/enc-utf8"
 import latin1 from "crypto-js/enc-latin1"
 import hex from "crypto-js/enc-hex"
-import JSONFormatter from 'json-formatter-js'
 
 function urlencode(a,b){
     return++b?'%'+([10]+a.charCodeAt().toString(16)).slice(-2):unescape(encodeURIComponent(a)).replace(/[^]/g, urlencode);
@@ -72,10 +72,13 @@ export default {
           input: "",
           output: ""
       },
-      lastAction: undefined
+      lastAction: undefined,
     }
   },
   methods: {
+    copyData () {
+        return this.text.output
+    },
     output (value) {
         for (let shape of this.$store.state.shape) {
             if(shape === 'lower') {
@@ -209,9 +212,11 @@ export default {
         let result = "String.fromCharCode(" + this.text.input.split('').map(m => m.charCodeAt()).join(',') + ")"
         this.output(result)
     },
-    jsonformat () {
-        const formatter = new JSONFormatter(JSON.parse(this.text.input))
-        this.output(formatter.render())
+    execute () {
+        try {
+            let result = eval(this.text.input)
+            this.output(result)
+        } catch (e) {}
     }
   },
 

@@ -1,8 +1,9 @@
 <template>
 <div>
-    <el-menu id="header" mode="horizontal">
-        <el-menu-item index="1"><strong>LEAVESONG工具架</strong></el-menu-item>
-        <el-menu-item index="3">前端工具</el-menu-item>
+    <el-menu id="header" default-active="/" mode="horizontal" :router="true">
+        <li class="menu-header"><strong>LEAVESONG工具架</strong></li>
+        <el-menu-item index="/">前端工具</el-menu-item>
+        <el-menu-item index="json">Json格式化</el-menu-item>
         <div class="has-button">
             <el-button class="button" type="default" @click="showConfig = true">设置</el-button>
         </div>
@@ -45,7 +46,18 @@ export default {
     z-index: 9999;
 }
 .button {
+    margin-left: 20px;
     position: relative;
     top: 10px;
+}
+.menu-header {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 5px solid transparent;
 }
 </style>
