@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import store from './vuex/store'
 import VueClipboard from "vue-clipboard2"
+import Magic from './utils/magic'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueClipboard)
+Vue.use(Magic)
 
 new Vue({
   el: '#app',

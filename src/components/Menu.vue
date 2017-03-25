@@ -1,9 +1,10 @@
 <template>
 <div>
-    <el-menu id="header" default-active="/" mode="horizontal" :router="true">
+    <el-menu id="header" :default-active="$route.path" mode="horizontal" :router="true">
         <li class="menu-header"><strong>LEAVESONG工具架</strong></li>
         <el-menu-item index="/">前端工具</el-menu-item>
-        <el-menu-item index="json">Json格式化</el-menu-item>
+        <el-menu-item index="/hashed">哈希工具</el-menu-item>
+        <el-menu-item index="/json">Json格式化</el-menu-item>
         <div class="has-button">
             <el-button class="button" type="default" @click="showConfig = true">设置</el-button>
         </div>
@@ -16,6 +17,7 @@
 import Config from "./Config.vue"
 
 export default {
+    name: 'menu',
     components:{Config},
     data() {
         return {
@@ -24,11 +26,6 @@ export default {
             activeIndex2: '1'
         };
     },
-    methods: {
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        }
-    }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

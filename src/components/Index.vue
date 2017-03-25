@@ -80,16 +80,7 @@ export default {
         return this.text.output
     },
     output (value) {
-        for (let shape of this.$store.state.shape) {
-            if(shape === 'lower') {
-                value = value.toLowerCase()
-            } else if (shape === 'upper') {
-                value = value.toUpperCase()
-            } else if (shape === 'urlencode') {
-                value = encodeURIComponent(value)
-            }
-        }
-        this.text.output = value
+        this.text.output = this.magic(value)
     },
     convert () {
         if(this.lastAction && this.lastAction instanceof Function) {
