@@ -12,9 +12,11 @@ Vue.use(ElementUI)
 Vue.use(VueClipboard)
 Vue.use(Magic)
 
-new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
-})
+window.onload = () => {
+    new Vue({
+        el: '#app',
+        router,
+        store,
+        render: h => h(App)
+    })
+}

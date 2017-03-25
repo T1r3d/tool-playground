@@ -14,6 +14,16 @@
                 </el-option>
             </el-select>
         </el-form-item>
+        <el-form-item label="随机串取值范围">
+            <el-select @change="changeRandomRange" :value="$store.state.randomRange" @input="changeRandomRange($event.target.value)" multiple placeholder="请选择" class="select">
+                <el-option
+                        v-for="item in randomRange"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+        </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="showDialog = false">确 定</el-button>
@@ -52,6 +62,28 @@ export default {
                     value: "urlencode",
                     label: "URL编码"
                 }
+            ],
+            randomRange: [
+                {
+                    value: "lower",
+                    label: "小写字母",
+                },
+                {
+                    value: "upper",
+                    label: "大写字母"
+                },
+                {
+                    value: "number",
+                    label: "数字"
+                },
+                {
+                    value: "symbol",
+                    label: "无害符号"
+                },
+                {
+                    value: "danger_symbol",
+                    label: "有害符号"
+                }
             ]
         }
     },
@@ -62,6 +94,9 @@ export default {
         changeShape (value) {
             this.$store.commit("changeShape", value)
         },
+        changeRandomRange (value) {
+            this.$store.commit("changeRandomRange", value)
+        }
     }
 }
 </script>
